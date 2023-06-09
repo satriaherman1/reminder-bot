@@ -19,14 +19,16 @@ const runScheduler = () => {
     });
 
     timeArr.forEach(({ time, link, name }) => {
-      const day = time.split(", ")[0];
-      const hourSchedule = time.split(", ")[1].split("-")[0];
-      const dayCode = getNumberOfDay(day.toLowerCase());
+      // berfungsi untuk memparsing data dari jadwal yang sudah kita terima
+      // data `time` berupa `Jumat, 22:49-23:00`
+      const day = time.split(", ")[0]; // mengambil data hari, di case ini berarti text `Jumat`
+      const hourSchedule = time.split(", ")[1].split("-")[0]; // mengambil data jam pelajaran di mulai, di case ini berarti `22:49`
+      const dayCode = getNumberOfDay(day.toLowerCase()); // merubah data text hari `Jumat` menjadi day of the week, di case ini berarti `5`, day of the week terdiri dari hari minggu=0,senin=1,selasa=2,rabu=3,kamis=4,jumat=5,sabtu=6
 
-      const hour = hourSchedule.split(":")[0];
-      const minute = hourSchedule.split(":")[1];
+      const hour = hourSchedule.split(":")[0]; // mengambil data jam, di case ini berarti `22`
+      const minute = hourSchedule.split(":")[1]; // mengambil data menit, di case ini berarti `49`
 
-      const cronExpression = `${minute} ${hour} * * ${dayCode}`
+      const cronExpression = `TODO: buat cron expression menggunakan data di atas`
 
       cron.schedule(cronExpression, () => {
         console.log('reminder sent')
